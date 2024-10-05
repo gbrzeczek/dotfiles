@@ -1,0 +1,51 @@
+" Relative line numbers
+:set relativenumber
+:set number
+
+let mapleader = ","
+
+" Enable IdeaVim plugins
+set surround
+set commentary
+set multiple-cursors
+set easymotion
+set highlightedyank
+
+" File navigation (similar to Telescope)
+map <leader>ff <Action>(GotoFile)
+map <leader>fg <Action>(FindInPath)
+map <leader>fb <Action>(Switcher)
+map <leader>fh <Action>(QuickJavaDoc)
+
+" LSP-like functionalities
+map <leader>gr <Action>(FindUsages)
+map <leader>gd <Action>(GotoDeclaration)
+map <leader>gi <Action>(GotoImplementation)
+map <leader>rn <Action>(RenameElement)
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>fo <Action>(ReformatCode)
+map <leader>ho <Action>(QuickJavaDoc)
+map <leader>si <Action>(ParameterInfo)
+map <leader>go <Action>(GotoTypeDeclaration)
+
+" Diagnostics
+map <leader>dn <Action>(GotoNextError)
+map <leader>dp <Action>(GotoPreviousError)
+
+" Git operations (similar to your Gitsigns setup)
+map ]c <Action>(VcsShowNextChangeMarker)
+map [c <Action>(VcsShowPrevChangeMarker)
+map <leader>hr <Action>(Vcs.RollbackChangedLines)
+map <leader>hd <Action>(Compare.LastVersion)
+
+" Buffer navigation (similar to bufferline)
+map <A-,> <Action>(PreviousTab)
+map <A-.> <Action>(NextTab)
+map <A-c> <Action>(CloseContent)
+
+" Toggle inline blame
+map <leader>tb <Action>(GitToolBox.ShowInlineBlame)
+
+" Toggle inline hints
+map <leader>th <Action>(ToggleInlayHintsGloballyAction)
+
