@@ -49,3 +49,6 @@ map <leader>tb <Action>(GitToolBox.ShowInlineBlame)
 " Toggle inline hints
 map <leader>th <Action>(ToggleInlayHintsGloballyAction)
 
+" Breakpoints
+map <leader>bb :action ToggleLineBreakpoint<CR>
+
