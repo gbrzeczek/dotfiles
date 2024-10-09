@@ -1,5 +1,5 @@
 $files = @{
-    ".ideavimrc" = "$env:USERPROFILE\.ideavimrc"
+    "ideavim\.ideavimrc" = "$env:USERPROFILE\.ideavimrc"
     "windows\powershell-profile.ps1" = "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
     "windows\windows-terminal-settings.json" = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 }
@@ -30,6 +30,14 @@ foreach ($file in $files.Keys) {
     } else {
         Write-Host "Source file $file not found in $sourceDir"
     }
+}
+
+Write-Host "Installing Oh My Posh..."
+
+try {
+    winget install JanDeDobbeleer.OhMyPosh -s winget
+} catch {
+    Write-Host "Failed to install Oh My Posh: $_"
 }
 
 Write-Host "Dotfiles setup complete!"
