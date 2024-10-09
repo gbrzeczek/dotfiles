@@ -5,6 +5,7 @@ declare -A files=(
     ["ideavim/.ideavimrc"]="$HOME/.ideavimrc"
     ["alacritty/alacritty.toml"]="$HOME/.config/alacritty/alacritty.toml"
     ["alacritty/catppuccin-mocha.toml"]="$HOME/.config/alacritty/catppuccin-mocha.toml"
+    ["nvim"]="$HOME/.config/nvim"
 )
 
 # Get the directory of the script
@@ -16,7 +17,7 @@ create_symlink() {
     local target="$2"
     
     # Check if the source file exists
-    if [ ! -f "$source" ]; then
+    if [ ! -e "$source" ]; then
         echo "Source file $(basename "$source") not found in $SOURCE_DIR"
         return 1
     fi
