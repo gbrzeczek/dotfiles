@@ -62,6 +62,8 @@ install_alacritty() {
         sudo dnf install -y alacritty
         if [ $? -eq 0 ]; then
             echo "Alacritty installed successfully."
+            echo "Setting Alacritty as default shell..."
+            chsh -s /bin/zsh
             return 0
         else
             echo "Failed to install Alacritty."
