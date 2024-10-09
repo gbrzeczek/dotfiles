@@ -32,12 +32,16 @@ foreach ($file in $files.Keys) {
     }
 }
 
-Write-Host "Installing Oh My Posh..."
-
-try {
-    winget install JanDeDobbeleer.OhMyPosh -s winget
-} catch {
-    Write-Host "Failed to install Oh My Posh: $_"
+if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
+    Write-Host "Oh My Posh is already installed."
+} else {
+    Write-Host "Installing Oh My Posh..."
+    try {
+        winget install JanDeDobbeleer.OhMyPosh -s winget
+        Write-Host "Oh My Posh installed successfully."
+    } catch {
+        Write-Host "Failed to install Oh My Posh: $_"
+    }
 }
 
 Write-Host "Dotfiles setup complete!"
