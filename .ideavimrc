@@ -32,11 +32,12 @@ map <leader>go <Action>(GotoTypeDeclaration)
 map <leader>dn <Action>(GotoNextError)
 map <leader>dp <Action>(GotoPreviousError)
 
-" Git operations (similar to your Gitsigns setup)
+" Git operations (similar to my Gitsigns setup)
 map ]c <Action>(VcsShowNextChangeMarker)
 map [c <Action>(VcsShowPrevChangeMarker)
 map <leader>hr <Action>(Vcs.RollbackChangedLines)
 map <leader>hd <Action>(Compare.LastVersion)
+map <leader>vb <Action>(Git.Branches)
 
 " Buffer navigation (similar to bufferline)
 map <A-,> <Action>(PreviousTab)
