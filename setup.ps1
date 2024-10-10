@@ -2,6 +2,7 @@ $files = @{
     "ideavim\.ideavimrc" = "$env:USERPROFILE\.ideavimrc"
     "windows\powershell-profile.ps1" = "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
     "windows\windows-terminal-settings.json" = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+    "nvim" = "$env:LOCALAPPDATA\nvim"
 }
 
 $sourceDir = $PSScriptRoot
