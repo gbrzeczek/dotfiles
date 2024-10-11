@@ -46,5 +46,58 @@ if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
     }
 }
 
+function Install-Npm {
+    Write-Host "Installing npm..."
+    if (Get-Command npm -ErrorAction SilentlyContinue) {
+        Write-Host "npm is already installed."
+        return $true
+    }
+    else {
+        try {
+            # Using winget to install Node.js which includes npm
+            winget install OpenJS.NodeJS
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "npm installed successfully."
+                return $true
+            }
+            else {
+                Write-Host "Failed to install npm."
+                return $false
+            }
+        }
+        catch {
+            Write-Host "An error occurred while installing npm: $_"
+            return $false
+        }
+    }
+}
+
+function Install-NodePackages {
+    Write-Host "Installing node packages..."
+    try {
+        npm install -g @angular/language-service typescript typescript-language-server @vue/language-server @vue/typescript-plugin
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "Node packages installed successfully."
+            return $true
+        }
+        else {
+            Write-Host "Node package installation failed."
+            return $false
+        }
+    }
+    catch {
+        Write-Host "An error occurred while installing node packages: $_"
+        return $false
+    }
+}
+
+# Main execution
+if (Install-Npm) {
+    Install-NodePackages
+}
+else {
+    Write-Host "Aborting node package installation due to npm installation failure."
+}
+
 Write-Host "Dotfiles setup complete!"
 
