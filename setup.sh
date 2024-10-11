@@ -116,5 +116,39 @@ install_oh_my_zsh() {
 
 install_oh_my_zsh
 
+install_npm() {
+    echo "Installing npm..."
+    if command -v npm &> /dev/null; then
+        echo "npm is already installed."
+        return 0
+    else
+        sudo dnf install -y npm
+        if [ $? -eq 0 ]; then
+            echo "npm installed successfully."
+            return 0
+        else
+            echo "Failed to install npm."
+            return 1
+        fi
+    fi
+}
+
+install_npm
+
+install_node_packages() {
+    echo "Installing node packages..."
+    sudo npm install -g @angular/language-service typescript typescript-language-server @vue/language-server @vue/typescript-plugin
+
+    if [ $? -eq 0 ]; then
+        echo "Node packages installed successfully."
+        return 0
+    else
+        echo "Node package installation failed."
+        return 1
+    fi
+}
+
+install_node_packages
+
 echo "Dotfiles setup complete!"
 
