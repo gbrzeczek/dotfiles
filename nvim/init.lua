@@ -52,6 +52,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'sindrets/diffview.nvim'
+Plug 'unblevable/quick-scope'
 call plug#end()
 ]])
 
