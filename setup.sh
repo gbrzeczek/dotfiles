@@ -6,6 +6,8 @@ declare -A files=(
     ["alacritty/alacritty.toml"]="$HOME/.config/alacritty/alacritty.toml"
     ["alacritty/catppuccin-mocha.toml"]="$HOME/.config/alacritty/catppuccin-mocha.toml"
     ["nvim"]="$HOME/.config/nvim"
+    ["hyprland"]="$HOME/.config/hypr"
+    ["waybar"]="$HOME/.config/waybar"
 )
 
 # Get the directory of the script
@@ -77,6 +79,82 @@ install_alacritty() {
 }
 
 install_alacritty
+
+install_hyprland() {
+    echo "Installing Hyprland..."
+    if ! command -v Hyprland &> /dev/null; then
+        sudo dnf install -y hyprland
+        if [ $? -eq 0 ]; then
+            echo "Hyprland installed successfully."
+            return 0
+        else
+            echo "Failed to install Hyprland."
+            return 1
+        fi
+    else
+        echo "Hyprland is already installed."
+        return 0
+    fi
+}
+
+install_hyprland
+
+install_waybar() {
+    echo "Installing Waybar..."
+    if ! command -v waybar &> /dev/null; then
+        sudo dnf install -y waybar
+        if [ $? -eq 0 ]; then
+            echo "Waybar installed successfully."
+            return 0
+        else
+            echo "Failed to install Waybar."
+            return 1
+        fi
+    else
+        echo "Waybar is already installed."
+        return 0
+    fi
+}
+
+install_waybar
+
+install_wlogout() {
+    echo "Installing wlogout..."
+    if ! command -v wlogout &> /dev/null; then
+        sudo dnf install -y wlogout
+        if [ $? -eq 0 ]; then
+            echo "wlogout installed successfully."
+            return 0
+        else
+            echo "Failed to install wlogout."
+            return 1
+        fi
+    else
+        echo "wlogout is already installed."
+        return 0
+    fi
+}
+
+install_wlogout
+
+install_pamixer() {
+    echo "Installing pamixer..."
+    if ! command -v pamixer &> /dev/null; then
+        sudo dnf install -y pamixer
+        if [ $? -eq 0 ]; then
+            echo "pamixer installed successfully."
+            return 0
+        else
+            echo "Failed to install pamixer."
+            return 1
+        fi
+    else
+        echo "pamixer is already installed."
+        return 0
+    fi
+}
+
+install_pamixer
 
 install_zsh() {
     echo "Installing zsh..."
