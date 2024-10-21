@@ -239,6 +239,20 @@ require'lspconfig'.ts_ls.setup{
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
 }
 
+require'lspconfig'.clangd.setup{
+    capabilities = capabilities,
+    cmd = { "clangd" },
+    filetypes = {"c", "cpp"},
+    init_options = {
+        compilationDatabasePath = "build",
+        index = {
+            onChange = true,
+            threads = 0
+        },
+        clangdFileStatus = true
+    }
+}
+
 -- Angular bindings
 local opts = { noremap = true, silent = true }
 local ng = require("ng");
