@@ -11,7 +11,9 @@
     "tray",
     "pulseaudio",
     "network",
-    "clock" ,
+    "bluetooth",
+    "battery",
+    "clock",
     "custom/launch_wlogout"
   ],
   "hyprland/window": {
@@ -86,7 +88,8 @@
   },
 
   "bluetooth": {
-    "format": " {status}",
+    "format": "",
+    "on-click": "blueman-manager",
     "format-disabled": "", // an empty format will hide the module
     "format-connected": " {num_connections}",
     "tooltip-format": "{device_alias}",
@@ -98,6 +101,11 @@
     "format": "⏻  ",
     "on-click": "wlogout",
     "tooltip": false
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""]
   }
 }
 

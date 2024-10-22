@@ -156,6 +156,63 @@ install_pamixer() {
 
 install_pamixer
 
+install_blueman() {
+    echo "Installing blueman..."
+    if ! command -v blueman-applet &> /dev/null; then
+        sudo dnf install -y blueman
+        if [ $? -eq 0 ]; then
+            echo "blueman installed successfully."
+            return 0
+        else
+            echo "Failed to install blueman."
+            return 1
+        fi
+    else
+        echo "blueman is already installed."
+        return 0
+    fi
+}
+
+install_blueman
+
+install_network_manager_applet() {
+    echo "Installing network manager applet..."
+    if ! command -v blueman-applet &> /dev/null; then
+        sudo dnf install -y blueman
+        if [ $? -eq 0 ]; then
+            echo "network manager applet installed successfully."
+            return 0
+        else
+            echo "Failed to install network manager applet."
+            return 1
+        fi
+    else
+        echo "network manager applet is already installed."
+        return 0
+    fi
+}
+
+install_network_manager_applet
+
+install_rofi() {
+    echo "Installing rofi..."
+    if ! command -v rofi &> /dev/null; then
+        sudo dnf install -y rofi-wayland
+        if [ $? -eq 0 ]; then
+            echo "rofi installed successfully."
+            return 0
+        else
+            echo "Failed to install rofi."
+            return 1
+        fi
+    else
+        echo "rofi is already installed."
+        return 0
+    fi
+}
+
+install_rofi
+
 install_zsh() {
     echo "Installing zsh..."
     if ! command -v zsh &> /dev/null; then
