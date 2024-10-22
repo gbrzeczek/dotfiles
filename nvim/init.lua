@@ -53,6 +53,7 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'sindrets/diffview.nvim'
 Plug 'unblevable/quick-scope'
+Plug('ziglang/zig.vim')
 call plug#end()
 ]])
 
@@ -251,6 +252,11 @@ require'lspconfig'.clangd.setup{
         },
         clangdFileStatus = true
     }
+}
+
+require'lspconfig'.zls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach
 }
 
 -- Angular bindings
