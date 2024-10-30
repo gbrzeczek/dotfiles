@@ -75,6 +75,25 @@ install_hyprland() {
 
 install_hyprland
 
+install_hyprpaper() {
+    echo "Installing Hyprpaper..."
+    if ! command -v hyprpaper &> /dev/null; then
+        sudo dnf install -y hyprpaper
+        if [ $? -eq 0 ]; then
+            echo "Hyprpaper installed successfully."
+            return 0
+        else
+            echo "Failed to install Hyprpaper."
+            return 1
+        fi
+    else
+        echo "Hyprpaper is already installed."
+        return 0
+    fi
+}
+
+install_hyprpaper
+
 install_waybar() {
     echo "Installing Waybar..."
     if ! command -v waybar &> /dev/null; then
