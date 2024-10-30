@@ -57,6 +57,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     local function_colors = vim.api.nvim_get_hl(0, { name = "Function" })
     local define_colors = vim.api.nvim_get_hl(0, { name = "Define" })
+
+    if define_colors.link then
+      define_colors = vim.api.nvim_get_hl(0, { name = define_colors.link })
+    end
     
     vim.api.nvim_set_hl(0, 'QuickScopePrimary', { 
       fg = function_colors.fg,
