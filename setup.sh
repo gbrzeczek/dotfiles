@@ -6,6 +6,7 @@ declare -A files=(
     ["alacritty/alacritty.toml"]="$HOME/.config/alacritty/alacritty.toml"
     ["alacritty/catppuccin-mocha.toml"]="$HOME/.config/alacritty/catppuccin-mocha.toml"
     ["nvim"]="$HOME/.config/nvim"
+    ["zsh/.zshrc"]="$HOME/.zshrc"
 )
 
 # Get the directory of the script
