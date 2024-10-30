@@ -4,6 +4,7 @@
 declare -A files=(
     ["hyprland"]="$HOME/.config/hypr"
     ["waybar"]="$HOME/.config/waybar"
+    ["rofi"]="$HOME/.config/rofi"
 )
 
 # Get the directory of the script
@@ -92,25 +93,6 @@ install_waybar() {
 }
 
 install_waybar
-
-install_wlogout() {
-    echo "Installing wlogout..."
-    if ! command -v wlogout &> /dev/null; then
-        sudo dnf install -y wlogout
-        if [ $? -eq 0 ]; then
-            echo "wlogout installed successfully."
-            return 0
-        else
-            echo "Failed to install wlogout."
-            return 1
-        fi
-    else
-        echo "wlogout is already installed."
-        return 0
-    fi
-}
-
-install_wlogout
 
 install_pamixer() {
     echo "Installing pamixer..."

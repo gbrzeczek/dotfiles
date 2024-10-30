@@ -12,8 +12,7 @@
     "pulseaudio",
     "network",
     "battery",
-    "clock",
-    "custom/launch_wlogout"
+    "clock"
   ],
   "hyprland/window": {
     "format": "{}"
@@ -77,12 +76,6 @@
     "format-linked": "{ifname} (No IP)",
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
-  },
-
-  "custom/launch_wlogout": {
-    "format": "⏻  ",
-    "on-click": "wlogout",
-    "tooltip": false
   },
 
   "battery": {
