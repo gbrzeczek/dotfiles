@@ -3,14 +3,17 @@ configuration {
 	show-icons: true;
 	icon-theme: "Papirus";
 	drun-display-format: "{icon} {name}";
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
-  filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
-  }
+    display-drun: "ฅ^•ﻌ•^ฅ";
+    kb-row-down: "Alt+j";
+    kb-row-up: "Alt+k";
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+    }
 }
 
 @theme "catppuccin-mocha"
