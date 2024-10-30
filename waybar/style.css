@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "FiraCode Nerd Font Mono";
+  font-family: "CommitMono";
   font-weight: bold;
   font-size: 12.5px;
   min-height: 0;
@@ -73,14 +73,6 @@ tooltip {
   border: 1px solid #181825;
 }
 
-#temperature {
-  border-radius: 10px 0px 0px 10px;
-}
-
-#temperature.critical {
-  color: #eba0ac;
-}
-
 #backlight {
   border-radius: 0px;
   border-left: none;
@@ -93,8 +85,9 @@ tooltip {
 }
 
 #tray {
-  border-radius: 10px;
+  border-radius: 15px;
   margin-right: 10px;
+  padding: 0 15px;
 }
 
 #workspaces {
