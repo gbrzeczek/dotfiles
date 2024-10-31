@@ -19,7 +19,7 @@ vim.opt.ttyfast = true
 vim.opt.relativenumber = true
 
 -- Set leader key
-vim.g.mapleader = ','
+vim.g.mapleader = " "
 
 -- Enable filetype plugins
 vim.cmd('filetype plugin indent on')
@@ -83,6 +83,18 @@ vim.g.loaded_netrwPlugin = 1
 -- Keybindings
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+
+-- Enable highlight on yank
+vim.api.nvim_create_augroup("highlight_yank", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = "highlight_yank",
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = "Visual",
+            timeout = 200
+        })
+    end
+})
 
 -- Telescope bindings
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)

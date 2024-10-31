@@ -2,7 +2,7 @@
 :set relativenumber
 :set number
 
-let mapleader = ","
+let mapleader = " "
 
 " Enable IdeaVim plugins
 set surround
