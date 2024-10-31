@@ -21,6 +21,8 @@ vim.opt.relativenumber = true
 -- Set leader key
 vim.g.mapleader = " "
 
+vim.opt.termguicolors = true
+
 -- Enable filetype plugins
 vim.cmd('filetype plugin indent on')
 vim.cmd('syntax on')
@@ -50,6 +52,7 @@ Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'sindrets/diffview.nvim'
 Plug 'unblevable/quick-scope'
 Plug('ziglang/zig.vim')
+Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 ]])
 
@@ -108,8 +111,10 @@ map('n', '<Leader>n', ':Neotree position=float toggle<CR>', opts)
 -- Setup lualine
 require('lualine').setup {}
 
+-- Setup lua colorizer
+require('colorizer').setup()
+
 -- Setup bufferline
-vim.opt.termguicolors = true
 require("bufferline").setup{}
 
 map('n', '<A-,>', '<Cmd>BufferLineCyclePrev<CR>', opts)

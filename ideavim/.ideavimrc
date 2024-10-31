@@ -4,6 +4,10 @@
 
 let mapleader = " "
 
+" Case-insensitive search, unless using uppercase letters
+set ignorecase
+set smartcase
+
 " Enable IdeaVim plugins
 set surround
 set commentary
