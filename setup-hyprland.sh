@@ -189,5 +189,23 @@ install_rofi() {
 
 install_rofi
 
-echo "Hyprland dotfiles setup complete!"
+install_hyprshot() {
+    echo "Installing hyprshot..."
+    if ! command -v hyprshot &> /dev/null; then
+        sudo dnf install -y hyprshot
+        if [ $? -eq 0 ]; then
+            echo "hyprshot installed successfully."
+            return 0
+        else
+            echo "Failed to install hyprshot."
+            return 1
+        fi
+    else
+        echo "hyprshot is already installed."
+        return 0
+    fi
+}
 
+install_hyprshot
+
+echo "Hyprland dotfiles setup complete!"
