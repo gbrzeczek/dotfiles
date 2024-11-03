@@ -5,6 +5,8 @@ declare -A files=(
     ["hyprland"]="$HOME/.config/hypr"
     ["waybar"]="$HOME/.config/waybar"
     ["rofi"]="$HOME/.config/rofi"
+    ["rofi-scripts/rofi-power-menu"]="/usr/bin/rofi-power-menu"
+    ["rofi-scripts/cliphist-rofi-img"]="/usr/bin/cliphist-rofi-img"
 )
 
 # Get the directory of the script
@@ -32,15 +34,15 @@ create_symlink() {
     if [ -e "$target" ]; then
         # If it's already a symlink, remove it
         if [ -L "$target" ]; then
-            rm "$target"
+            sudo rm "$target"
         else
             # If it's a regular file, rename it as a backup
-            mv "$target" "${target}.backup"
+            sudo mv "$target" "${target}.backup"
         fi
     fi
 
     # Create the symlink
-    ln -s "$source" "$target"
+    sudo ln -s "$source" "$target"
     echo "Created symlink for $(basename "$source")"
     return 0
 }
