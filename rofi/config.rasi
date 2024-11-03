@@ -1,11 +1,14 @@
 configuration {
 	font: "CommitMono 12";
+    modi: "drun,power-menu:rofi-power-menu,clipboard:cliphist-rofi-img";
 	show-icons: true;
 	icon-theme: "Papirus";
 	drun-display-format: "{icon} {name}";
     display-drun: "ฅ^•ﻌ•^ฅ";
     kb-row-down: "Alt+j";
     kb-row-up: "Alt+k";
+    kb-mode-next: "Alt+l";
+    kb-mode-previous: "Alt+h";
     timeout {
         action: "kb-cancel";
         delay:  0;
