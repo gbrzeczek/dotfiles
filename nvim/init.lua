@@ -51,8 +51,9 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'sindrets/diffview.nvim'
 Plug 'unblevable/quick-scope'
-Plug('ziglang/zig.vim')
+Plug 'ziglang/zig.vim'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'kdheepak/lazygit.nvim'
 call plug#end()
 ]])
 
@@ -98,6 +99,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         })
     end
 })
+
+-- LazyGit binding
+map('n', '<leader>gg', '<cmd>LazyGit<cr>', opts)
 
 -- Telescope bindings
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)
