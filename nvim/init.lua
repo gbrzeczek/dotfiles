@@ -146,6 +146,10 @@ require('telescope').setup {
     }
 }
 
+-- zig config
+vim.g.zig_fmt_parse_errors = 0
+vim.cmd [[autocmd BufWritePre *.zig lua vim.lsp.buf.format()]]
+
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
