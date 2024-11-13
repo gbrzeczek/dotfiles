@@ -214,12 +214,29 @@ vim.api.nvim_set_keymap('n', '<leader>do', ':DiffviewOpen<CR>', { noremap = true
 vim.api.nvim_set_keymap('n', '<leader>dc', ':DiffviewClose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>dt', ':DiffviewToggleFiles<CR>', { noremap = true, silent = true })
 
--- Language servers
-local tsProbeLocations = "%APPDATA%\\npm\\node_modules\\typescript\\lib"
-local ngProbeLocations = "%APPDATA%\\npm\\node_modules\\@angular\\language-server"
-local vueLanguageServerLocation = vim.fn.expand("$APPDATA\\npm\\node_modules\\@vue\\language-server")
+local function get_language_server_locations()
+    local is_windows = vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1
+    local locations = {}
 
-local cmd = {"ngserver", "--stdio", "--tsProbeLocations", tsProbeLocations, "--ngProbeLocations", ngProbeLocations}
+    if is_windows then
+        locations.tsProbeLocations = "%APPDATA%\\npm\\node_modules\\typescript\\lib"
+        locations.ngProbeLocations = "%APPDATA%\\npm\\node_modules\\@angular\\language-server"
+        locations.vueLanguageServerLocation = vim.fn.expand("$APPDATA\\npm\\node_modules\\@vue\\language-server")
+    else
+        local base_path = "/usr/local/lib/node_modules"
+
+        locations.tsProbeLocations = base_path .. "/typescript/lib"
+        locations.ngProbeLocations = base_path .. "/@angular/language-server"
+        locations.vueLanguageServerLocation = base_path .. "/@vue/language-server"
+    end
+
+    return locations
+end
+
+-- Language servers
+local locations = get_language_server_locations()
+
+local cmd = {"ngserver", "--stdio", "--tsProbeLocations", locations.tsProbeLocations, "--ngProbeLocations", locations.ngProbeLocations}
 
 require'lspconfig'.angularls.setup{
   capabilities = capabilities,
@@ -273,7 +290,7 @@ require'lspconfig'.ts_ls.setup{
         plugins = {
             {
                 name = "@vue/typescript-plugin",
-                location = vueLanguageServerLocation ,
+                location = locations.vueLanguageServerLocation ,
                 languages = { "vue" },
             },
         },
