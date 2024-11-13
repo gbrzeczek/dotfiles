@@ -87,7 +87,6 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.dotnet:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/zig:$PATH"
-export PATH="$PATH:/opt/nvim-linux64/bin"
 
 # bun completions
 [ -s "/home/gbr/.bun/_bun" ] && source "/home/gbr/.bun/_bun"
@@ -95,5 +94,3 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-export NODE_OPTIONS="--max-old-space-size=8192"

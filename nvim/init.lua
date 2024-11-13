@@ -215,19 +215,9 @@ vim.api.nvim_set_keymap('n', '<leader>dc', ':DiffviewClose<CR>', { noremap = tru
 vim.api.nvim_set_keymap('n', '<leader>dt', ':DiffviewToggleFiles<CR>', { noremap = true, silent = true })
 
 -- Language servers
-local function get_npm_path()
-    local is_windows = vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1
-    
-    if is_windows then
-        return vim.fn.expand("%APPDATA%\\npm\\node_modules")
-    else
-        return "/usr/local/lib/node_modules"
-    end
-end
-local npm_path = get_npm_path()
-local tsProbeLocations = npm_path .. "/typescript/lib"
-local ngProbeLocations = npm_path .. "/@angular/language-server"
-local vueLanguageServerLocation = npm_path .. "/@vue/language-server"
+local tsProbeLocations = "%APPDATA%\\npm\\node_modules\\typescript\\lib"
+local ngProbeLocations = "%APPDATA%\\npm\\node_modules\\@angular\\language-server"
+local vueLanguageServerLocation = vim.fn.expand("$APPDATA\\npm\\node_modules\\@vue\\language-server")
 
 local cmd = {"ngserver", "--stdio", "--tsProbeLocations", tsProbeLocations, "--ngProbeLocations", ngProbeLocations}
 

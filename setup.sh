@@ -138,7 +138,7 @@ install_npm
 
 install_node_packages() {
     echo "Installing node packages..."
-    sudo npm install -g @angular/language-service @angular/language-server typescript typescript-language-server @vue/language-server @vue/typescript-plugin
+    sudo npm install -g @angular/language-service typescript typescript-language-server @vue/language-server @vue/typescript-plugin
 
     if [ $? -eq 0 ]; then
         echo "Node packages installed successfully."
