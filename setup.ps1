@@ -3,6 +3,8 @@ $files = @{
     "windows\powershell-profile.ps1" = "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
     "windows\windows-terminal-settings.json" = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
     "nvim" = "$env:LOCALAPPDATA\nvim"
+    "alacritty\alacritty.toml" = "$env:APPDATA\alacritty\alacritty.toml"
+    "alacritty\catppuccin-mocha.toml" = "$env:APPDATA\alacritty\catppuccin-mocha.toml"
 }
 
 $sourceDir = $PSScriptRoot

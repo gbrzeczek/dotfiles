@@ -1,7 +1,7 @@
 live_config_reload = true
 
 import = [
-    "~/.config/alacritty/catppuccin-mocha.toml"
+    "./catppuccin-mocha.toml"
 ]
 
 [font]
@@ -61,7 +61,7 @@ history = 10000
 multiplier = 3
 
 [window]
-decorations = "full"
+decorations = "none"
 dynamic_padding = true
 
 [window.padding]
