@@ -139,6 +139,12 @@ map('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
 -- Telescope config
 require('telescope').setup {
     defaults = {
+        layout_strategy = 'vertical',
+        layout_config = {
+            vertical = {
+                preview_height = 0.6
+            }
+        },
         file_ignore_patterns = { 'node_modules', '.git' },
         path_display = { 'truncate' }
     }
