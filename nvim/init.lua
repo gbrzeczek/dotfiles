@@ -54,6 +54,7 @@ Plug 'unblevable/quick-scope'
 Plug 'ziglang/zig.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'kdheepak/lazygit.nvim'
+Plug 'mrcjkb/rustaceanvim'
 call plug#end()
 ]])
 
@@ -312,6 +313,12 @@ require'lspconfig'.clangd.setup{
 require'lspconfig'.zls.setup {
     capabilities = capabilities,
     on_attach = on_attach
+}
+
+vim.g.rustaceanvim = {
+    server = {
+        on_attach = on_attach
+    }
 }
 
 -- Angular bindings
