@@ -34,7 +34,6 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'dense-analysis/ale'
 Plug 'nvim-neo-tree/neo-tree.nvim', {'branch': 'v2.x', 'do': ':UpdateRemotePlugins'}
 Plug 'MunifTanjim/nui.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -320,6 +319,8 @@ require'lspconfig'.zls.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
+
+require'lspconfig'.eslint.setup{}
 
 vim.g.rustaceanvim = {
     server = {

@@ -77,7 +77,7 @@ function Install-Npm {
 function Install-NodePackages {
     Write-Host "Installing node packages..."
     try {
-        npm install -g @angular/language-service typescript typescript-language-server @vue/language-server @vue/typescript-plugin
+        npm install -g @angular/language-service typescript typescript-language-server @vue/language-server @vue/typescript-plugin vscode-langservers-extracted@4.8.0
         if ($LASTEXITCODE -eq 0) {
             Write-Host "Node packages installed successfully."
             return $true
