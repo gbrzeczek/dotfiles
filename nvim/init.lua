@@ -344,6 +344,11 @@ require'lspconfig'.html.setup{
     on_attach = on_attach
 }
 
+require'lspconfig'.jsonls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+
 vim.g.rustaceanvim = {
     server = {
         on_attach = on_attach
