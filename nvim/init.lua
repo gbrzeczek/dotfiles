@@ -333,6 +333,17 @@ require"lspconfig".eslint.setup{
     end,
 }
 
+require'lspconfig'.cssls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+
+
+require'lspconfig'.html.setup{
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+
 vim.g.rustaceanvim = {
     server = {
         on_attach = on_attach
