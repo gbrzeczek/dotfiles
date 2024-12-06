@@ -415,3 +415,14 @@ require('gitsigns').setup {
   end
 }
 
+-- filetype-specific configuration
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "rust",
+    callback = function()
+        remap_opts = { silent = true, buffer = bufnr }
+        vim.keymap.set('n', '<leader>rr', function() vim.cmd.RustLsp('run') end, remap_opts)
+        vim.keymap.set('n', '<leader>rl', function() vim.cmd.RustLsp('runnables') end, remap_opts)
+        vim.keymap.set('n', '<leader>rt', function() vim.cmd.RustLsp('testables') end, remap_opts)
+
+    end,
+})
