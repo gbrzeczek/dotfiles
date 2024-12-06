@@ -38,12 +38,9 @@ Plug 'nvim-neo-tree/neo-tree.nvim', {'branch': 'v2.x', 'do': ':UpdateRemotePlugi
 Plug 'MunifTanjim/nui.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 Plug 'joeveiga/ng.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
@@ -155,35 +152,21 @@ require('telescope').setup {
 vim.g.zig_fmt_parse_errors = 0
 vim.cmd [[autocmd BufWritePre *.zig lua vim.lsp.buf.format()]]
 
-local cmp = require('cmp')
-local luasnip = require('luasnip')
-
--- Code completions
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
+vim.g.coq_settings = {
+  auto_start = 'shut-up',
+  keymap = {
+    recommended = true,
+    jump_to_mark = '<C-j>'
   },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  }, {
-    { name = 'buffer' },
-  })
-})
+  display = {
+    pum = {
+      fast_close = false
+    }
+  }
+}
 
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+local coq = require('coq')
+local capabilities = coq.lsp_ensure_capabilities({})
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -351,7 +334,8 @@ require'lspconfig'.jsonls.setup{
 
 vim.g.rustaceanvim = {
     server = {
-        on_attach = on_attach
+        on_attach = on_attach,
+        capabilities = capabilities
     }
 }
 
