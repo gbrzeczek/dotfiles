@@ -307,7 +307,13 @@ require'lspconfig'.zls.setup {
 
 require"lspconfig".eslint.setup{
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = function(client, buffer)
+        on_attach(client, buffer)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+        })
+    end,
     on_new_config = function(config, new_root_dir)
     config.settings.workspaceFolder = {
         uri = vim.uri_from_fname(new_root_dir),
