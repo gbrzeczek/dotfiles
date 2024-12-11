@@ -88,6 +88,7 @@ export PATH="$HOME/.dotnet:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/zig:$PATH"
 export PATH="/opt/nvim-linux64/bin:$PATH"
+export PATH="$HOME/.platformio/penv/bin:$PATH"
 
 export NODE_OPTIONS="--max-old-space-size=8192"
 
