@@ -54,6 +54,7 @@ Plug 'mrcjkb/rustaceanvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-surround'
+Plug 'romainl/vim-cool'
 call plug#end()
 ]])
 
