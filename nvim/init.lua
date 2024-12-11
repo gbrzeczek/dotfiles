@@ -288,6 +288,7 @@ require'lspconfig'.ts_ls.setup{
 
 require'lspconfig'.clangd.setup{
     capabilities = capabilities,
+    on_attach = on_attach,
     cmd = { "clangd" },
     filetypes = {"c", "cpp"},
     init_options = {
