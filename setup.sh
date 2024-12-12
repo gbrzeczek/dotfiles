@@ -3,8 +3,7 @@
 # Define the files to symlink
 declare -A files=(
     ["ideavim/.ideavimrc"]="$HOME/.ideavimrc"
-    ["alacritty/alacritty.toml"]="$HOME/.config/alacritty/alacritty.toml"
-    ["alacritty/catppuccin-mocha.toml"]="$HOME/.config/alacritty/catppuccin-mocha.toml"
+    ["alacritty"]="$HOME/.config/alacritty"
     ["nvim"]="$HOME/.config/nvim"
     ["zsh/.zshrc"]="$HOME/.zshrc"
 )
