@@ -320,6 +320,18 @@ require"lspconfig".eslint.setup{
         name = vim.fn.fnamemodify(new_root_dir, ':t')
     }
     end,
+    filetypes = { 
+        "javascript", 
+        "javascriptreact", 
+        "javascript.jsx", 
+        "typescript", 
+        "typescriptreact", 
+        "typescript.tsx", 
+        "vue", 
+        "svelte", 
+        "astro",
+        "html"
+    },
 }
 
 require'lspconfig'.cssls.setup{
