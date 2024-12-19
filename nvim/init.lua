@@ -32,7 +32,7 @@ vim.cmd([[
 call plug#begin()
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+Plug 'ibhagwan/fzf-lua'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-neo-tree/neo-tree.nvim', {'branch': 'v2.x', 'do': ':UpdateRemotePlugins'}
 Plug 'MunifTanjim/nui.nvim'
@@ -106,12 +106,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- LazyGit binding
 map('n', '<leader>gg', '<cmd>LazyGit<cr>', opts)
 
--- Telescope bindings
-map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)
-map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opts)
-map('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opts)
-map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opts)
-map('n', '<leader>v', '<cmd>Telescope registers<cr>', opts)
+-- fzf-lua bindings
+map('n', '<leader>ff', '<cmd>FzfLua files<cr>', opts)
+map('n', '<leader>fg', '<cmd>FzfLua live_grep<cr>', opts)
+map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', opts)
+map('n', '<leader>fh', '<cmd>FzfLua help_tags<cr>', opts)
+map('n', '<leader>v', '<cmd>FzfLua registers<cr>', opts)
 
 -- Neotree binding
 map('n', '<Leader>n', ':Neotree position=float toggle<CR>', opts)
@@ -139,19 +139,19 @@ map('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
 map('n', '<A-0>', '<Cmd>BufferLinePick<CR>', opts)
 map('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
 
--- Telescope config
-require('telescope').setup {
-    defaults = {
-        layout_strategy = 'vertical',
-        layout_config = {
-            vertical = {
-                preview_height = 0.6
-            }
-        },
-        file_ignore_patterns = { 'node_modules', '.git' },
-        path_display = { 'truncate' }
+-- fzf-lua config
+require('fzf-lua').setup({
+    winopts = {
+        height = 0.9,
+        width = 0.9,
+        preview = {
+            horizontal = 'up:60%'
+        }
+    },
+    files = {
+        fd_opts = "--type f --hidden --follow --exclude .git --exclude node_modules"
     }
-}
+})
 
 -- zig config
 vim.g.zig_fmt_parse_errors = 0
