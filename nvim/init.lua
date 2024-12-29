@@ -141,6 +141,7 @@ map('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
 
 -- fzf-lua config
 require('fzf-lua').setup({
+    fzf_colors = true,
     winopts = {
         height = 0.9,
         width = 0.9,
