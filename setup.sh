@@ -3,7 +3,7 @@
 # Define the files to symlink
 declare -A files=(
     ["ideavim/.ideavimrc"]="$HOME/.ideavimrc"
-    ["alacritty"]="$HOME/.config/alacritty"
+    ["ghostty"]="$HOME/.config/ghostty"
     ["nvim"]="$HOME/.config/nvim"
     ["zsh/.zshrc"]="$HOME/.zshrc"
 )
@@ -56,27 +56,6 @@ for file in "${!files[@]}"; do
 done
 
 echo "Symlink files created!"
-
-install_alacritty() {
-    echo "Installing Alacritty..."
-    if ! command -v alacritty &> /dev/null; then
-        sudo dnf install -y alacritty
-        if [ $? -eq 0 ]; then
-            echo "Alacritty installed successfully."
-            echo "Setting Alacritty as default shell..."
-            chsh -s /bin/zsh
-            return 0
-        else
-            echo "Failed to install Alacritty."
-            return 1
-        fi
-    else
-        echo "Alacritty is already installed."
-        return 0
-    fi
-}
-
-install_alacritty
 
 install_zsh() {
     echo "Installing zsh..."
