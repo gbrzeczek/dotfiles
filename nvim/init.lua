@@ -108,7 +108,19 @@ map('n', '<leader>gg', '<cmd>LazyGit<cr>', opts)
 
 -- fzf-lua bindings
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', opts)
-map('n', '<leader>fg', '<cmd>FzfLua live_grep<cr>', opts)
+
+-- live grep also works in visual mode - it looks for selection
+vim.keymap.set({'n', 'v'}, '<leader>fg', function()
+    local selected_text = vim.fn.expand('<cword>')
+    if vim.fn.mode() == 'v' then
+        local saved_reg = vim.fn.getreg('v')
+        vim.cmd('normal! "vy"')
+        selected_text = vim.fn.getreg('v')
+        vim.fn.setreg('v', saved_reg)
+    end
+    require('fzf-lua').live_grep({ search = selected_text })
+end, opts)
+
 map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', opts)
 map('n', '<leader>fh', '<cmd>FzfLua help_tags<cr>', opts)
 map('n', '<leader>v', '<cmd>FzfLua registers<cr>', opts)
