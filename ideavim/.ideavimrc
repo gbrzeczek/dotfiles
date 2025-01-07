@@ -32,6 +32,8 @@ map <leader>ho <Action>(QuickJavaDoc)
 map <leader>si <Action>(ParameterInfo)
 map <leader>go <Action>(GotoTypeDeclaration)
 
+map `` <Action>(Back)
+
 " Diagnostics
 map [d <Action>(GotoPreviousError)
 map ]d <Action>(GotoNextError)
