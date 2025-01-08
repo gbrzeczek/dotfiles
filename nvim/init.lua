@@ -49,7 +49,6 @@ Plug 'sindrets/diffview.nvim'
 Plug 'unblevable/quick-scope'
 Plug 'ziglang/zig.vim'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'kdheepak/lazygit.nvim'
 Plug 'mrcjkb/rustaceanvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'rstacruz/vim-closer'
@@ -57,6 +56,7 @@ Plug 'tpope/vim-surround'
 Plug 'romainl/vim-cool'
 Plug 'anurag3301/nvim-platformio.lua'
 Plug 'akinsho/nvim-toggleterm.lua'
+Plug 'NeogitOrg/neogit'
 call plug#end()
 ]])
 
@@ -103,8 +103,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end
 })
 
--- LazyGit binding
-map('n', '<leader>gg', '<cmd>LazyGit<cr>', opts)
+-- Neogit
+local neogit = require('neogit')
+neogit.setup {}
+vim.keymap.set('n', '<leader>gg', neogit.open, opts)
 
 -- fzf-lua bindings
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', opts)
