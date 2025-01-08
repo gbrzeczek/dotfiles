@@ -113,7 +113,7 @@ map('n', '<leader>ff', '<cmd>FzfLua files<cr>', opts)
 
 -- live grep also works in visual mode - it looks for selection
 vim.keymap.set({'n', 'v'}, '<leader>fg', function()
-    local selected_text = vim.fn.expand('<cword>')
+    local selected_text = ''
     if vim.fn.mode() == 'v' then
         local saved_reg = vim.fn.getreg('v')
         vim.cmd('normal! "vy"')
