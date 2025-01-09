@@ -269,7 +269,11 @@ require'lspconfig'.volar.setup{}
 
 require'lspconfig'.ts_ls.setup{
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+        -- Formatting is handled by eslint
+        client.server_capabilities.documentFormattingProvider = false
+        on_attach(client, bufnr)
+    end,
     settings = {
         typescript = {
             inlayHints = {
@@ -328,7 +332,10 @@ require'lspconfig'.zls.setup {
 
 require"lspconfig".eslint.setup{
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+        client.server_capabilities.documentFormattingProvider = true
+        on_attach(client, bufnr)
+    end,
     on_new_config = function(config, new_root_dir)
     config.settings.workspaceFolder = {
         uri = vim.uri_from_fname(new_root_dir),
