@@ -83,6 +83,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 -- Set colorscheme
 vim.cmd('colorscheme catppuccin')
 
+-- Make the background transparent
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+
 -- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
