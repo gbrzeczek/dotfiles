@@ -454,3 +454,10 @@ vim.api.nvim_create_autocmd("FileType", {
 
     end,
 })
+
+-- custom commands - POS
+vim.api.nvim_create_user_command('PosUpdateImports', function()
+    vim.cmd([[%s/\.\.\(\/\.\.\)*\/pos-shared/@pos-common/g]])
+    vim.cmd([[%s/\.\.\(\/\.\.\)*\/pos-core/@pos-core/g]])
+end, {})
+
