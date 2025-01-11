@@ -57,6 +57,7 @@ Plug 'romainl/vim-cool'
 Plug 'anurag3301/nvim-platformio.lua'
 Plug 'akinsho/nvim-toggleterm.lua'
 Plug 'NeogitOrg/neogit'
+Plug 'rachartier/tiny-inline-diagnostic.nvim'
 call plug#end()
 ]])
 
@@ -114,6 +115,10 @@ vim.keymap.set('n', '<leader>gg', neogit.open, opts)
 
 -- fzf-lua bindings
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', opts)
+
+-- Tiny inline diagnostic
+vim.diagnostic.config({ virtual_text = false })
+require('tiny-inline-diagnostic').setup()
 
 -- live grep also works in visual mode - it looks for selection
 vim.keymap.set({'n', 'v'}, '<leader>fg', function()
