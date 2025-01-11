@@ -37,6 +37,7 @@ map `` <Action>(Back)
 " Diagnostics
 map [d <Action>(GotoPreviousError)
 map ]d <Action>(GotoNextError)
+map <leader>ds <Action>(ShowErrorDescription)
 
 " Git operations (similar to my Gitsigns setup)
 map [c <Action>(VcsShowPrevChangeMarker)
