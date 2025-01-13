@@ -118,7 +118,11 @@ map('n', '<leader>ff', '<cmd>FzfLua files<cr>', opts)
 
 -- Tiny inline diagnostic
 vim.diagnostic.config({ virtual_text = false })
-require('tiny-inline-diagnostic').setup()
+require('tiny-inline-diagnostic').setup {
+    options = {
+        throttle = 100
+    }
+}
 
 -- live grep also works in visual mode - it looks for selection
 vim.keymap.set({'n', 'v'}, '<leader>fg', function()
