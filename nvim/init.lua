@@ -202,20 +202,30 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- Leader key mappings
-  buf_set_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<leader>go', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', '<leader>fo', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
-  buf_set_keymap('n', '<leader>ho', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>si', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-
+  vim.keymap.set('n', '<leader>gr', function()
+    require('fzf-lua').lsp_references({
+      timeout = 10000,
+      async = true,
+      multiprocess = true,
+      jump_to_single_result = true,
+      include_current_line = false
+    })
+  end, opts)
+  vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', '<leader>go', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', '<leader>fo', function()
+    vim.lsp.buf.format({ async = true })
+  end, opts)
+  vim.keymap.set('n', '<leader>ho', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', '<leader>si', vim.lsp.buf.signature_help, opts)
+  
   -- Diagnostics
-  buf_set_keymap('n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', '<leader>ds', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', '<leader>ds', vim.diagnostic.open_float, opts)
 
   -- Inlay hints
   vim.keymap.set('n', '<leader>th', function()
