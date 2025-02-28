@@ -57,7 +57,6 @@ Plug 'romainl/vim-cool'
 Plug 'anurag3301/nvim-platformio.lua'
 Plug 'akinsho/nvim-toggleterm.lua'
 Plug 'NeogitOrg/neogit'
-Plug 'rachartier/tiny-inline-diagnostic.nvim'
 call plug#end()
 ]])
 
@@ -115,14 +114,6 @@ vim.keymap.set('n', '<leader>gg', neogit.open, opts)
 
 -- fzf-lua bindings
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', opts)
-
--- Tiny inline diagnostic
-vim.diagnostic.config({ virtual_text = false })
-require('tiny-inline-diagnostic').setup {
-    options = {
-        throttle = 100
-    }
-}
 
 -- live grep also works in visual mode - it looks for selection
 vim.keymap.set({'n', 'v'}, '<leader>fg', function()
@@ -476,7 +467,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- custom commands - POS
 vim.api.nvim_create_user_command('PosUpdateImports', function()
-    vim.cmd([[%s/\.\.\(\/\.\.\)*\/pos-shared/@pos-common/g]])
-    vim.cmd([[%s/\.\.\(\/\.\.\)*\/pos-core/@pos-core/g]])
+    vim.cmd([[silent! %s/\.\.\(\/\.\.\)*\/pos-shared/@pos-common/g]])
+    vim.cmd([[silent! %s/\.\.\(\/\.\.\)*\/pos-core/@pos-core/g]])
 end, {})
 
