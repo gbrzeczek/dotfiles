@@ -57,6 +57,7 @@ Plug 'romainl/vim-cool'
 Plug 'anurag3301/nvim-platformio.lua'
 Plug 'akinsho/nvim-toggleterm.lua'
 Plug 'NeogitOrg/neogit'
+Plug 'rmagatti/auto-session'
 call plug#end()
 ]])
 
@@ -139,6 +140,8 @@ require('lualine').setup {}
 
 -- Setup lua colorizer
 require('colorizer').setup()
+
+require('auto-session').setup()
 
 -- Setup bufferline
 require("bufferline").setup{}
