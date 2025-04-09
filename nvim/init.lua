@@ -60,6 +60,7 @@ Plug 'NeogitOrg/neogit'
 Plug 'rmagatti/auto-session'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'MunifTanjim/prettier.nvim'
+Plug 'luckasRanarison/tailwind-tools.nvim'
 call plug#end()
 ]])
 
@@ -528,4 +529,8 @@ prettier.setup({
     "typescriptreact",
     "yaml",
   },
+})
+
+-- tailwind tools - remember to call :UpdateRemotePlugins for this to work
+require("tailwind-tools").setup({
 })

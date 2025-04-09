@@ -123,7 +123,9 @@ install_node_packages() {
         @vue/language-server \
         @vue/typescript-plugin \
         vscode-langservers-extracted@4.8.0 \
-        prettier
+        prettier \
+        @tailwindcss/language-server \
+        neovim
 
     if [ $? -eq 0 ]; then
         echo "Node packages installed successfully."
