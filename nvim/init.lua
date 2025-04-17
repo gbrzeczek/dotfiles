@@ -149,19 +149,19 @@ require('auto-session').setup()
 -- Setup bufferline
 require("bufferline").setup{}
 
-map('n', '<A-,>', '<Cmd>BufferLineCyclePrev<CR>', opts)
-map('n', '<A-.>', '<Cmd>BufferLineCycleNext<CR>', opts)
-map('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', opts)
-map('n', '<A-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', opts)
-map('n', '<A-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', opts)
-map('n', '<A-4>', '<Cmd>BufferLineGoToBuffer 4<CR>', opts)
-map('n', '<A-5>', '<Cmd>BufferLineGoToBuffer 5<CR>', opts)
-map('n', '<A-6>', '<Cmd>BufferLineGoToBuffer 6<CR>', opts)
-map('n', '<A-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', opts)
-map('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
-map('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
-map('n', '<A-0>', '<Cmd>BufferLinePick<CR>', opts)
-map('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
+map('n', '<C-,>', '<Cmd>BufferLineCyclePrev<CR>', opts)
+map('n', '<C-.>', '<Cmd>BufferLineCycleNext<CR>', opts)
+map('n', '<C-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', opts)
+map('n', '<C-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', opts)
+map('n', '<C-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', opts)
+map('n', '<C-4>', '<Cmd>BufferLineGoToBuffer 4<CR>', opts)
+map('n', '<C-5>', '<Cmd>BufferLineGoToBuffer 5<CR>', opts)
+map('n', '<C-6>', '<Cmd>BufferLineGoToBuffer 6<CR>', opts)
+map('n', '<C-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', opts)
+map('n', '<C-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
+map('n', '<C-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
+map('n', '<C-0>', '<Cmd>BufferLinePick<CR>', opts)
+map('n', '<C-c>', '<Cmd>bdelete<CR>', opts)
 
 -- fzf-lua config
 require('fzf-lua').setup({
