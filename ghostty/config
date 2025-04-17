@@ -1,6 +1,7 @@
 font-family = FiraCode Nerd Font Mono
 theme = catppuccin-mocha
 cursor-style = block
+click-repeat-interval = 250
 
 macos-option-as-alt = true
 
