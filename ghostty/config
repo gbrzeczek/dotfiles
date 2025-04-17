@@ -1,7 +1,6 @@
 font-family = FiraCode Nerd Font Mono
 theme = catppuccin-mocha
 cursor-style = block
-window-decoration = false
 
 macos-option-as-alt = true
 
