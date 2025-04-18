@@ -58,7 +58,7 @@ Plug 'anurag3301/nvim-platformio.lua'
 Plug 'akinsho/nvim-toggleterm.lua'
 Plug 'NeogitOrg/neogit'
 Plug 'rmagatti/auto-session'
-Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'nvimtools/none-ls.nvim'
 Plug 'MunifTanjim/prettier.nvim'
 Plug 'luckasRanarison/tailwind-tools.nvim'
 call plug#end()
