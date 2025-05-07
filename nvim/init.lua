@@ -60,7 +60,6 @@ vim.cmd('colorscheme catppuccin')
 vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
 
-
 -- Keybindings
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
