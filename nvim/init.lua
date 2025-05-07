@@ -21,48 +21,17 @@ vim.opt.relativenumber = true
 -- Set leader key
 vim.g.mapleader = " "
 
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("config.lazy")
+
 vim.opt.termguicolors = true
 
 -- Enable filetype plugins
 vim.cmd('filetype plugin indent on')
 vim.cmd('syntax on')
-
--- Plugin management with vim-plug
-vim.cmd([[
-call plug#begin()
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'nvim-lua/plenary.nvim'
-Plug 'ibhagwan/fzf-lua'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-neo-tree/neo-tree.nvim', {'branch': 'v2.x', 'do': ':UpdateRemotePlugins'}
-Plug 'MunifTanjim/nui.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-Plug 'joeveiga/ng.nvim'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
-Plug 'sindrets/diffview.nvim'
-Plug 'unblevable/quick-scope'
-Plug 'ziglang/zig.vim'
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'mrcjkb/rustaceanvim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-Plug 'rstacruz/vim-closer'
-Plug 'tpope/vim-surround'
-Plug 'romainl/vim-cool'
-Plug 'anurag3301/nvim-platformio.lua'
-Plug 'akinsho/nvim-toggleterm.lua'
-Plug 'NeogitOrg/neogit'
-Plug 'rmagatti/auto-session'
-Plug 'nvimtools/none-ls.nvim'
-Plug 'MunifTanjim/prettier.nvim'
-Plug 'luckasRanarison/tailwind-tools.nvim'
-call plug#end()
-]])
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
@@ -91,9 +60,6 @@ vim.cmd('colorscheme catppuccin')
 vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
 
--- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 -- Keybindings
 local map = vim.api.nvim_set_keymap
@@ -162,41 +128,6 @@ map('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
 map('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
 map('n', '<A-0>', '<Cmd>BufferLinePick<CR>', opts)
 map('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
-
--- fzf-lua config
-require('fzf-lua').setup({
-    fzf_colors = true,
-    winopts = {
-        height = 0.9,
-        width = 0.9,
-        preview = {
-            horizontal = 'up:60%'
-        }
-    },
-    files = {
-        fd_opts = "--type f --hidden --follow --exclude .git --exclude node_modules"
-    }
-})
-
--- zig config
-vim.g.zig_fmt_parse_errors = 0
-vim.cmd [[autocmd BufWritePre *.zig lua vim.lsp.buf.format()]]
-
-vim.g.coq_settings = {
-  auto_start = 'shut-up',
-  keymap = {
-    recommended = true,
-    jump_to_mark = '<C-j>'
-  },
-  display = {
-    pum = {
-      fast_close = false
-    }
-  }
-}
-
-local coq = require('coq')
-local capabilities = coq.lsp_ensure_capabilities({})
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -352,11 +283,6 @@ require'lspconfig'.clangd.setup{
     }
 }
 
-require'lspconfig'.zls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-
 require"lspconfig".eslint.setup{
     capabilities = capabilities,
     on_attach = function(client, bufnr)
@@ -397,13 +323,6 @@ require'lspconfig'.html.setup{
 require'lspconfig'.jsonls.setup{
     capabilities = capabilities,
     on_attach = on_attach
-}
-
-vim.g.rustaceanvim = {
-    server = {
-        on_attach = on_attach,
-        capabilities = capabilities
-    }
 }
 
 -- Angular bindings
@@ -465,18 +384,6 @@ require('gitsigns').setup {
     map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
   end
 }
-
--- filetype-specific configuration
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "rust",
-    callback = function()
-        remap_opts = { silent = true, buffer = bufnr }
-        vim.keymap.set('n', '<leader>rr', function() vim.cmd.RustLsp('run') end, remap_opts)
-        vim.keymap.set('n', '<leader>rl', function() vim.cmd.RustLsp('runnables') end, remap_opts)
-        vim.keymap.set('n', '<leader>rt', function() vim.cmd.RustLsp('testables') end, remap_opts)
-
-    end,
-})
 
 -- custom commands - POS
 vim.api.nvim_create_user_command('PosUpdateImports', function()

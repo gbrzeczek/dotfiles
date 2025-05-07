@@ -177,6 +177,7 @@ install_node_packages() {
     echo "Installing node packages..."
     npm install -g \
         @angular/language-service \
+        @angular/language-server \
         typescript \
         typescript-language-server \
         @vue/language-server \
