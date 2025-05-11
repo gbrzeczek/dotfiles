@@ -6,9 +6,18 @@ return {
                 registries = {
                     "lua:custom-mason-registry",
                     "github:mason-org/mason-registry",
-                }
+                },
             })
         end
+    },
+
+    {
+        'WhoIsSethDaniel/mason-tool-installer',
+        opts = {
+            ensure_installed = {
+                "prettierd"
+            }
+        }
     },
 
     {
@@ -189,7 +198,7 @@ return {
             'nvimtools/none-ls.nvim',
         },
         opts = {
-            bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+            bin = 'prettierd',
             filetypes = {
                 "css",
                 "graphql",
