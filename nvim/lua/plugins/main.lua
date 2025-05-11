@@ -151,11 +151,14 @@ return {
             "sindrets/diffview.nvim",
             "ibhagwan/fzf-lua",
         },
-        config = function()
+        config = function(_, neogit_opts)
             local neogit = require('neogit')
-            neogit.setup {}
+            neogit.setup(neogit_opts)
             vim.keymap.set('n', '<leader>gg', neogit.open, opts)
-        end
+        end,
+        opts = {
+            graph_style = 'kitty'
+        }
     },
     {
         'rmagatti/auto-session',
