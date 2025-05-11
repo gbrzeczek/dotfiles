@@ -2,7 +2,12 @@ return {
     {
         "williamboman/mason.nvim",
         config = function()
-            require("mason").setup()
+            require("mason").setup({
+                registries = {
+                    "lua:custom-mason-registry",
+                    "github:mason-org/mason-registry",
+                }
+            })
         end
     },
 

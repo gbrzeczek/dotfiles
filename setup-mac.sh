@@ -176,13 +176,7 @@ install_node
 install_node_packages() {
     echo "Installing node packages..."
     npm install -g \
-        @angular/language-service \
-        @angular/language-server \
         typescript \
-        typescript-language-server \
-        @vue/language-server \
-        @vue/typescript-plugin \
-        vscode-langservers-extracted@4.8.0 \
         prettier \
         @tailwindcss/language-server \
         neovim
