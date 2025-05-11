@@ -21,14 +21,10 @@ vim.opt.relativenumber = true
 -- Set leader key
 vim.g.mapleader = " "
 
+-- has to be set for colorizer
 vim.opt.termguicolors = true
 
-require("config.lazy")
-
--- Enable filetype plugins
-vim.cmd('filetype plugin indent on')
-vim.cmd('syntax on')
-
+-- has to be set up by the start
 vim.api.nvim_create_autocmd("ColorScheme", {
     callback = function()
         local function_colors = vim.api.nvim_get_hl(0, { name = "Function" })
@@ -48,6 +44,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
         })
     end
 })
+
+require("config.lazy")
+
+-- Enable filetype plugins
+vim.cmd('filetype plugin indent on')
+vim.cmd('syntax on')
 
 -- Keybindings
 local map = vim.api.nvim_set_keymap
@@ -72,23 +74,6 @@ vim.keymap.set('n', '<leader>gg', neogit.open, opts)
 
 -- Neotree binding
 map('n', '<Leader>n', ':Neotree position=float toggle<CR>', opts)
-
--- Setup bufferline
-require("bufferline").setup {}
-
-map('n', '<A-,>', '<Cmd>BufferLineCyclePrev<CR>', opts)
-map('n', '<A-.>', '<Cmd>BufferLineCycleNext<CR>', opts)
-map('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', opts)
-map('n', '<A-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', opts)
-map('n', '<A-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', opts)
-map('n', '<A-4>', '<Cmd>BufferLineGoToBuffer 4<CR>', opts)
-map('n', '<A-5>', '<Cmd>BufferLineGoToBuffer 5<CR>', opts)
-map('n', '<A-6>', '<Cmd>BufferLineGoToBuffer 6<CR>', opts)
-map('n', '<A-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', opts)
-map('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
-map('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
-map('n', '<A-0>', '<Cmd>BufferLinePick<CR>', opts)
-map('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
 
 
 -- custom commands - POS

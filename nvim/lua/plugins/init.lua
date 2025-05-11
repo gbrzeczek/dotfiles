@@ -105,7 +105,24 @@ return {
     {
         'akinsho/bufferline.nvim',
         version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons'
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function()
+            require("bufferline").setup {}
+
+            vim.keymap.set('n', '<A-,>', '<Cmd>BufferLineCyclePrev<CR>', opts)
+            vim.keymap.set('n', '<A-.>', '<Cmd>BufferLineCycleNext<CR>', opts)
+            vim.keymap.set('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', opts)
+            vim.keymap.set('n', '<A-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', opts)
+            vim.keymap.set('n', '<A-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', opts)
+            vim.keymap.set('n', '<A-4>', '<Cmd>BufferLineGoToBuffer 4<CR>', opts)
+            vim.keymap.set('n', '<A-5>', '<Cmd>BufferLineGoToBuffer 5<CR>', opts)
+            vim.keymap.set('n', '<A-6>', '<Cmd>BufferLineGoToBuffer 6<CR>', opts)
+            vim.keymap.set('n', '<A-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', opts)
+            vim.keymap.set('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
+            vim.keymap.set('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
+            vim.keymap.set('n', '<A-0>', '<Cmd>BufferLinePick<CR>', opts)
+            vim.keymap.set('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
+        end
     },
     {
         'sindrets/diffview.nvim',
