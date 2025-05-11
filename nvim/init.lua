@@ -150,7 +150,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>fo', function()
     vim.lsp.buf.format({ async = true })
   end, opts)
-  vim.keymap.set('n', '<leader>ho', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', '<leader>ho', require("pretty_hover").hover, opts)
   vim.keymap.set('n', '<leader>si', vim.lsp.buf.signature_help, opts)
   
   -- Diagnostics

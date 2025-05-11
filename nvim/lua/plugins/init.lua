@@ -121,26 +121,39 @@ return {
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
-          -- All presets have the following mappings:
-          -- C-space: Open menu or open docs if already open
-          -- C-n/C-p or Up/Down: Select next/previous item
-          -- C-e: Hide menu
-          keymap = { preset = 'enter' },
+            -- All presets have the following mappings:
+            -- C-space: Open menu or open docs if already open
+            -- C-n/C-p or Up/Down: Select next/previous item
+            -- C-e: Hide menu
+            keymap = { preset = 'enter' },
     
-          appearance = {
-            nerd_font_variant = 'mono'
-          },
+            appearance = {
+                nerd_font_variant = 'mono'
+            },
     
-          -- (Default) Only show the documentation popup when manually triggered
-          completion = { documentation = { auto_show = true, auto_show_delay_ms = 500 } },
+            completion = { 
+                documentation = { 
+                    auto_show = true,
+                    auto_show_delay_ms = 500,
+                    -- Use pretty hover for documentation
+                    draw = function(opts)
+			        	if opts.item and opts.item.documentation then
+			        		local out = require("pretty_hover.parser").parse(opts.item.documentation.value)
+			        		opts.item.documentation.value = out:string()
+			        	end
+
+			        	opts.default_implementation(opts)
+			        end,
+                }
+            },
     
-          -- Default list of enabled providers defined so that you can extend it
-          -- elsewhere in your config, without redefining it, due to `opts_extend`
-          sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer' },
-          },
+            -- Default list of enabled providers defined so that you can extend it
+            -- elsewhere in your config, without redefining it, due to `opts_extend`
+            sources = {
+              default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
     
-          fuzzy = { implementation = "prefer_rust_with_warning" }
+            fuzzy = { implementation = "prefer_rust_with_warning" }
         },
         opts_extend = { "sources.default" }
     },
@@ -152,5 +165,10 @@ return {
             require('tiny-inline-diagnostic').setup()
             vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
         end
-    }
+    },
+    {
+    	"Fildo7525/pretty_hover",
+    	event = "LspAttach",
+    	opts = {}
+    },
 }
