@@ -158,14 +158,6 @@ return {
         ---@type AutoSession.Config
         opts = {}
     },
-    'nvimtools/none-ls.nvim',
-    {
-        'MunifTanjim/prettier.nvim',
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            'nvimtools/none-ls.nvim',
-        }
-    },
     {
         "luckasRanarison/tailwind-tools.nvim",
         name = "tailwind-tools",
