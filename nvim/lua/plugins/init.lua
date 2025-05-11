@@ -20,26 +20,26 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        config = function () 
-          local configs = require("nvim-treesitter.configs")
-    
-          configs.setup({
-              ensure_installed = { 
-                  "lua",
-                  "vim",
-                  "vimdoc",
-                  "query",
-                  "javascript",
-                  "html",
-                  "typescript",
-                  "angular",
-                  "css",
-                  "yaml",
-                  "json"
-              },
-              sync_install = false,
-              highlight = { enable = true },
-              indent = { enable = true },  
+        config = function()
+            local configs = require("nvim-treesitter.configs")
+
+            configs.setup({
+                ensure_installed = {
+                    "lua",
+                    "vim",
+                    "vimdoc",
+                    "query",
+                    "javascript",
+                    "html",
+                    "typescript",
+                    "angular",
+                    "css",
+                    "yaml",
+                    "json"
+                },
+                sync_install = false,
+                highlight = { enable = true },
+                indent = { enable = true },
             })
         end
     },
@@ -47,16 +47,15 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = {
-          "nvim-lua/plenary.nvim",
-          "nvim-tree/nvim-web-devicons",
-          "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
         },
         lazy = false,
         ---@module "neo-tree"
         ---@type neotree.Config?
-        opts = { },
+        opts = {},
     },
-    'neovim/nvim-lspconfig',
     'joeveiga/ng.nvim',
     {
         'nvim-lualine/lualine.nvim',
@@ -89,10 +88,10 @@ return {
     {
         'rmagatti/auto-session',
         lazy = false,
-    
+
         ---@module "auto-session"
         ---@type AutoSession.Config
-        opts = { }
+        opts = {}
     },
     'nvimtools/none-ls.nvim',
     {
@@ -126,33 +125,33 @@ return {
             -- C-n/C-p or Up/Down: Select next/previous item
             -- C-e: Hide menu
             keymap = { preset = 'enter' },
-    
+
             appearance = {
                 nerd_font_variant = 'mono'
             },
-    
-            completion = { 
-                documentation = { 
+
+            completion = {
+                documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 500,
                     -- Use pretty hover for documentation
                     draw = function(opts)
-			        	if opts.item and opts.item.documentation then
-			        		local out = require("pretty_hover.parser").parse(opts.item.documentation.value)
-			        		opts.item.documentation.value = out:string()
-			        	end
+                        if opts.item and opts.item.documentation then
+                            local out = require("pretty_hover.parser").parse(opts.item.documentation.value)
+                            opts.item.documentation.value = out:string()
+                        end
 
-			        	opts.default_implementation(opts)
-			        end,
+                        opts.default_implementation(opts)
+                    end,
                 }
             },
-    
+
             -- Default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             sources = {
-              default = { 'lsp', 'path', 'snippets', 'buffer' },
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
-    
+
             fuzzy = { implementation = "prefer_rust_with_warning" }
         },
         opts_extend = { "sources.default" }
@@ -167,8 +166,17 @@ return {
         end
     },
     {
-    	"Fildo7525/pretty_hover",
-    	event = "LspAttach",
-    	opts = {}
+        "Fildo7525/pretty_hover",
+        event = "LspAttach",
+        opts = {}
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
     },
 }
