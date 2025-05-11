@@ -71,8 +71,6 @@ return {
                 end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
             end
 
-            local mason_packages_location = vim.fs.joinpath(vim.fn.stdpath('data'), 'mason', 'packages')
-
             vim.lsp.config['lua_ls'] = {
                 on_attach = on_attach
             }
@@ -109,19 +107,6 @@ return {
                 },
                 filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
             }
-
-            local function get_typescript_location()
-                local is_windows = vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1
-                local is_mac = vim.fn.has('mac') == 1 or vim.fn.has('macunix') == 1
-
-                if is_windows then
-                    return "%APPDATA%\\npm\\node_modules\\typescript\\lib"
-                elseif is_mac then
-                    return "/opt/homebrew/lib/node_modules/typescript/lib"
-                else
-                    return "/usr/local/lib/node_modules/typescript/lib"
-                end
-            end
 
 
             vim.lsp.config['angularls'] = {
