@@ -84,7 +84,7 @@ return {
         ---@module "neo-tree"
         ---@type neotree.Config?
         opts = {},
-        config = function() 
+        config = function()
             vim.keymap.set('n', '<Leader>n', ':Neotree position=float toggle<CR>', opts)
         end
     },
@@ -293,4 +293,12 @@ return {
     {
         'norcalli/nvim-colorizer.lua',
     },
+    {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        lazy = false,
+    }
 }
