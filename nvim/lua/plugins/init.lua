@@ -84,6 +84,9 @@ return {
         ---@module "neo-tree"
         ---@type neotree.Config?
         opts = {},
+        config = function() 
+            vim.keymap.set('n', '<Leader>n', ':Neotree position=float toggle<CR>', opts)
+        end
     },
     {
         'joeveiga/ng.nvim',
@@ -148,6 +151,11 @@ return {
             "sindrets/diffview.nvim",
             "ibhagwan/fzf-lua",
         },
+        config = function()
+            local neogit = require('neogit')
+            neogit.setup {}
+            vim.keymap.set('n', '<leader>gg', neogit.open, opts)
+        end
     },
     {
         'rmagatti/auto-session',
