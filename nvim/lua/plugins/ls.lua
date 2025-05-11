@@ -118,17 +118,8 @@ return {
                 end
             end
 
-            local ts_location = get_typescript_location()
-            local angular_location = vim.fs.joinpath(mason_packages_location, 'angular-language-server')
-
-            local cmd = { "ngserver", "--stdio", "--tsProbeLocations", ts_location, "--ngProbeLocations",
-                angular_location }
 
             vim.lsp.config['angularls'] = {
-                cmd = cmd,
-                on_new_config = function(new_config, _)
-                    new_config.cmd = cmd
-                end,
                 on_attach = on_attach,
                 settings = {
                     angular = {
