@@ -44,7 +44,7 @@ map [c <Action>(VcsShowPrevChangeMarker)
 map ]c <Action>(VcsShowNextChangeMarker)
 map <leader>hr <Action>(Vcs.RollbackChangedLines)
 map <leader>hd <Action>(Compare.LastVersion)
-map <leader>vb <Action>(Git.Branches)
+map <leader>gg <Action>(Git.Branches)
 map <leader>do <Action>(Compare.SameVersion)
 
 " Buffer navigation (similar to bufferline)
