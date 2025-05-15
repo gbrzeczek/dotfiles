@@ -45,6 +45,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
 })
 
+-- required to detect htmlangular filetype based on the .component.html suffix
+-- it won't be supported in nvim itself due to compatibility reasons:
+-- https://github.com/vim/vim/pull/13594#issuecomment-1834465890
+vim.cmd('runtime! ftplugin/html.vim!')
+
 require("config.lazy")
 
 -- Enable filetype plugins
