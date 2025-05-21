@@ -73,11 +73,11 @@ return {
                 end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
             end
 
-            vim.lsp.config['lua_ls'] = {
+            vim.lsp.config.lua_ls = {
                 on_attach = on_attach
             }
 
-            vim.lsp.config['ts_ls'] = {
+            vim.lsp.config.ts_ls = {
                 on_attach = function(client, bufnr)
                     -- Formatting is handled by eslint
                     client.server_capabilities.documentFormattingProvider = false
@@ -111,7 +111,7 @@ return {
             }
 
 
-            vim.lsp.config['angularls'] = {
+            vim.lsp.config.angularls = {
                 on_attach = on_attach,
                 settings = {
                     angular = {
@@ -125,8 +125,12 @@ return {
                 },
             }
 
-            vim.lsp.config['eslint'] = {
+            -- temp fix for LspEslintFixAll not working
+            local base_on_attach = vim.lsp.config.eslint.on_attach
+
+            vim.lsp.config.eslint = {
                 on_attach = function(client, bufnr)
+                    if base_on_attach ~= nil then base_on_attach(client, bufnr) end
                     client.server_capabilities.documentFormattingProvider = true
                     on_attach(client, bufnr)
                 end,
@@ -150,15 +154,15 @@ return {
                 },
             }
 
-            vim.lsp.config['cssls'] = {
+            vim.lsp.config.cssls = {
                 on_attach = on_attach
             }
 
-            vim.lsp.config['html'] = {
+            vim.lsp.config.html = {
                 on_attach = on_attach
             }
 
-            vim.lsp.config['jsonls'] = {
+            vim.lsp.config.jsonls = {
                 on_attach = on_attach
             }
         end
