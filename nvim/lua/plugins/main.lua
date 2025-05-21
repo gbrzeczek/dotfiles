@@ -303,5 +303,10 @@ return {
         opts = {},
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         lazy = false,
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {}
     }
 }

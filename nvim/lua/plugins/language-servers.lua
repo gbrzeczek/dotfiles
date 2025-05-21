@@ -1,14 +1,7 @@
 return {
     {
         "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup({
-                registries = {
-                    "lua:custom-mason-registry",
-                    "github:mason-org/mason-registry",
-                },
-            })
-        end
+        config = true
     },
 
     {
@@ -29,7 +22,7 @@ return {
                     "angularls",
                     "lua_ls",
                     "vimls",
-                    "eslint",
+                    "eslint@4.8.0",
                     "cssls",
                     "html",
                     "jsonls"
