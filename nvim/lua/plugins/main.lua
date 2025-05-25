@@ -85,7 +85,8 @@ return {
         ---@type neotree.Config?
         opts = {},
         config = function()
-            vim.keymap.set('n', '<Leader>n', ':Neotree position=float toggle<CR>', opts)
+            vim.keymap.set('n', '<Leader>nn', ':Neotree position=float toggle<CR>', opts)
+            vim.keymap.set('n', '<Leader>nr', ':Neotree position=float reveal<CR>', opts)
         end
     },
     {
