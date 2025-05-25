@@ -325,5 +325,13 @@ return {
     },
     {
         'RRethy/vim-illuminate'
+    },
+    {
+        'stevearc/aerial.nvim',
+        opts = {},
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
     }
 }
