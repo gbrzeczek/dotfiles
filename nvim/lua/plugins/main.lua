@@ -109,11 +109,23 @@ return {
         'akinsho/bufferline.nvim',
         version = "*",
         dependencies = 'nvim-tree/nvim-web-devicons',
-        config = function()
-            require("bufferline").setup {}
+        opts = {
+            options = {
+                diagnostics = 'nvim_lsp',
+                diagnostics_indicator = function(count, level, _, _)
+                    local icon = level:match("error") and " " or " "
+                    return " " .. icon .. count
+                end
+            }
+        },
+        config = function(_, bufferline_opts)
+            require("bufferline").setup(bufferline_opts)
 
             vim.keymap.set('n', '<A-,>', '<Cmd>BufferLineCyclePrev<CR>', opts)
             vim.keymap.set('n', '<A-.>', '<Cmd>BufferLineCycleNext<CR>', opts)
+            vim.keymap.set('n', '<A-S-,>', '<Cmd>BufferLineMovePrev<CR>', opts)
+            vim.keymap.set('n', '<A-S-.>', '<Cmd>BufferLineMoveNext<CR>', opts)
+
             vim.keymap.set('n', '<A-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', opts)
             vim.keymap.set('n', '<A-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', opts)
             vim.keymap.set('n', '<A-3>', '<Cmd>BufferLineGoToBuffer 3<CR>', opts)
@@ -123,6 +135,7 @@ return {
             vim.keymap.set('n', '<A-7>', '<Cmd>BufferLineGoToBuffer 7<CR>', opts)
             vim.keymap.set('n', '<A-8>', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
             vim.keymap.set('n', '<A-9>', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
+
             vim.keymap.set('n', '<A-0>', '<Cmd>BufferLinePick<CR>', opts)
             vim.keymap.set('n', '<A-c>', '<Cmd>bdelete<CR>', opts)
         end
