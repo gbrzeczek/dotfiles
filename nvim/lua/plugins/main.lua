@@ -64,7 +64,8 @@ return {
                     "angular",
                     "css",
                     "yaml",
-                    "json"
+                    "json",
+                    "http"
                 },
                 sync_install = false,
                 highlight = { enable = true },
@@ -262,15 +263,6 @@ return {
                 documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 500,
-                    -- Use pretty hover for documentation
-                    draw = function(opts)
-                        if opts.item and opts.item.documentation then
-                            local out = require("pretty_hover.parser").parse(opts.item.documentation.value)
-                            opts.item.documentation.value = out:string()
-                        end
-
-                        opts.default_implementation(opts)
-                    end,
                 }
             },
 
@@ -333,5 +325,19 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons"
         },
-    }
+    },
+    {
+        "mistweaverco/kulala.nvim",
+        keys = {
+            { "<leader>Rs", desc = "Send request" },
+            { "<leader>Ra", desc = "Send all requests" },
+            { "<leader>Rb", desc = "Open scratchpad" },
+        },
+        ft = { "http", "rest" },
+        opts = {
+            global_keymaps = true,
+            global_keymaps_prefix = "<leader>R",
+            kulala_keymaps_prefix = "",
+        },
+    },
 }
