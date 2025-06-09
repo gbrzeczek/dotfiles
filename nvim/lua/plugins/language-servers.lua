@@ -1,41 +1,3 @@
-local on_attach = function(_, bufnr)
-    local opts = { noremap = true, silent = true }
-
-    -- Leader key mappings
-    vim.keymap.set('n', '<leader>gr', function()
-        require('fzf-lua').lsp_references({
-            timeout = 10000,
-            async = true,
-            multiprocess = true,
-            jump_to_single_result = true,
-            include_current_line = false
-        })
-    end, opts)
-
-    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<leader>go', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '<leader>fo', function()
-        vim.lsp.buf.format({ async = true })
-    end, opts)
-    vim.keymap.set('n', '<leader>ho', require("pretty_hover").hover, opts)
-    vim.keymap.set('n', '<leader>si', vim.lsp.buf.signature_help, opts)
-
-    -- Diagnostics
-    vim.keymap.set('n', '<leader>dn', function() vim.diagnostic.jump({ direction = "next" }) end, opts)
-    vim.keymap.set('n', '<leader>dp', function() vim.diagnostic.jump({ direction = "prev" }) end, opts)
-    vim.keymap.set('n', '<leader>ds', vim.diagnostic.open_float, opts)
-
-    -- Inlay hints
-    vim.keymap.set('n', '<leader>th', function()
-        local current_buf = vim.api.nvim_get_current_buf()
-        local inlay_hint_enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = current_buf })
-        vim.lsp.inlay_hint.enable(not inlay_hint_enabled, { bufnr = current_buf })
-    end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
-end
-
 return {
     {
         "williamboman/mason.nvim",
@@ -56,6 +18,7 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
+                    "ts_ls",
                     "angularls",
                     "lua_ls",
                     "vimls",
@@ -70,19 +33,83 @@ return {
     },
 
     {
-        "pmizio/typescript-tools.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        opts = {
-            on_attach = on_attach
-        },
-    },
-
-    {
         "neovim/nvim-lspconfig",
         config = function()
+            local on_attach = function(_, bufnr)
+                local opts = { noremap = true, silent = true }
+
+                -- Leader key mappings
+                vim.keymap.set('n', '<leader>gr', function()
+                    require('fzf-lua').lsp_references({
+                        timeout = 10000,
+                        async = true,
+                        multiprocess = true,
+                        jump_to_single_result = true,
+                        include_current_line = false
+                    })
+                end, opts)
+
+                vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
+                vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
+                vim.keymap.set('n', '<leader>go', vim.lsp.buf.type_definition, opts)
+                vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+                vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+                vim.keymap.set('n', '<leader>fo', function()
+                    vim.lsp.buf.format({ async = true })
+                end, opts)
+                vim.keymap.set('n', '<leader>ho', require("pretty_hover").hover, opts)
+                vim.keymap.set('n', '<leader>si', vim.lsp.buf.signature_help, opts)
+
+                -- Diagnostics
+                vim.keymap.set('n', '<leader>dn', function() vim.diagnostic.jump({ direction = "next" }) end, opts)
+                vim.keymap.set('n', '<leader>dp', function() vim.diagnostic.jump({ direction = "prev" }) end, opts)
+                vim.keymap.set('n', '<leader>ds', vim.diagnostic.open_float, opts)
+
+                -- Inlay hints
+                vim.keymap.set('n', '<leader>th', function()
+                    local current_buf = vim.api.nvim_get_current_buf()
+                    local inlay_hint_enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = current_buf })
+                    vim.lsp.inlay_hint.enable(not inlay_hint_enabled, { bufnr = current_buf })
+                end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
+            end
+
             vim.lsp.config.lua_ls = {
                 on_attach = on_attach
             }
+
+            vim.lsp.config.ts_ls = {
+                on_attach = function(client, bufnr)
+                    -- Formatting is handled by eslint
+                    client.server_capabilities.documentFormattingProvider = false
+                    on_attach(client, bufnr)
+                end,
+                settings = {
+                    typescript = {
+                        inlayHints = {
+                            includeInlayParameterNameHints = "all",
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayVariableTypeHints = true,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayEnumMemberValueHints = true,
+                        },
+                    },
+                    javascript = {
+                        inlayHints = {
+                            includeInlayParameterNameHints = "all",
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                            includeInlayFunctionParameterTypeHints = true,
+                            includeInlayVariableTypeHints = true,
+                            includeInlayPropertyDeclarationTypeHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = true,
+                            includeInlayEnumMemberValueHints = true,
+                        },
+                    },
+                },
+                filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+            }
+
 
             vim.lsp.config.angularls = {
                 on_attach = on_attach,
