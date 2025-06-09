@@ -73,7 +73,11 @@ return {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         opts = {
-            on_attach = on_attach
+            on_attach = function(client, bufnr)
+                -- Formatting is handled by eslint
+                client.server_capabilities.documentFormattingProvider = false
+                on_attach(client, bufnr)
+            end
         },
     },
 
