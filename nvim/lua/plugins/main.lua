@@ -399,5 +399,11 @@ return {
             hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
             hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
         end
+    },
+    {
+        "karb94/neoscroll.nvim",
+        opts = {
+            duration_multiplier = 0.5
+        },
     }
 }
