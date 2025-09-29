@@ -43,9 +43,8 @@ return {
                     require('fzf-lua').lsp_references({
                         timeout = 10000,
                         async = true,
-                        multiprocess = true,
-                        jump_to_single_result = true,
-                        include_current_line = false
+                        jump1 = true,
+                        include_current_line = false,
                     })
                 end, opts)
 
