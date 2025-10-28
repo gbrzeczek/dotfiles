@@ -149,7 +149,8 @@ return {
                     "vue",
                     "svelte",
                     "astro",
-                    "html"
+                    "html",
+                    "htmlangular"
                 },
             }
 
