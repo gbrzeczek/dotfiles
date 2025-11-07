@@ -185,16 +185,6 @@ return {
         opts = {}
     },
     {
-        "luckasRanarison/tailwind-tools.nvim",
-        name = "tailwind-tools",
-        build = ":UpdateRemotePlugins",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "neovim/nvim-lspconfig",
-        },
-        opts = {}
-    },
-    {
         'lewis6991/gitsigns.nvim',
         opts = {
             current_line_blame_opts = {
