@@ -74,5 +74,23 @@ vim.api.nvim_create_user_command('PosUpdateImports', function()
     vim.cmd([[silent! %s/\.\.\(\/\.\.\)*\/pos-core/@pos-core/g]])
 end, {})
 
+vim.keymap.set("n", "<leader>gs", function()
+  local file = vim.fn.expand("%:t") -- e.g. "app.component.ts" or "app.component.html"
+  local dir  = vim.fn.expand("%:p:h")
+
+  local stem = file:match("^(.+%.component)%.[^.]+$")
+  if not stem then
+    vim.notify("Not a .component.ts/.html file", vim.log.levels.WARN)
+    return
+  end
+
+  local scss = dir .. "/" .. stem .. ".scss"
+  if vim.fn.filereadable(scss) == 1 then
+    vim.cmd("edit " .. vim.fn.fnameescape(scss))
+  else
+    vim.notify("No matching .scss found: " .. scss, vim.log.levels.WARN)
+  end
+end, { desc = "Go to component SCSS" })
+
 -- has to be called at the end
 require('colorizer').setup();
