@@ -1,0 +1,72 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space f f": "file_finder::Toggle",
+      "space f g": "workspace::NewSearch",
+      "space f b": "tab_switcher::Toggle",
+      "space n n": "project_panel::ToggleFocus",
+
+      "space g r": "editor::FindAllReferences",
+      "space g d": "editor::GoToDefinition",
+      "space g i": "editor::GoToImplementation",
+      "space g o": "editor::GoToTypeDefinition",
+      "space r n": "editor::Rename",
+      "space c a": "editor::ToggleCodeActions",
+      "space f o": "editor::Format",
+      "space h o": "editor::Hover",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "space t h": "editor::ToggleInlayHints",
+      "space d s": "editor::ToggleInlineDiagnostics",
+
+      "cmd-0": "git_panel::Toggle",
+      "space t b": "git::Blame",
+      "] c": "editor::GoToHunk",
+      "[ c": "editor::GoToPreviousHunk",
+      "cmd-3": "terminal_panel::Toggle",
+
+      "ctrl up": "editor::AddSelectionAbove",
+      "ctrl down": "editor::AddSelectionBelow",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "space f o": "editor::Format",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-0": "git_panel::Toggle",
+      "alt-,": "pane::ActivatePreviousItem",
+      "alt-.": "pane::ActivateNextItem",
+      "alt-c": "pane::CloseActiveItem",
+      "cmd-3": "terminal_panel::Toggle"
+    },
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward",
+      "cmd-[": "workspace::ActivatePaneLeft",
+      "cmd-]": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-[": "workspace::ActivatePaneLeft",
+      "cmd-]": "workspace::ActivatePaneRight",
+    },
+  },
+]

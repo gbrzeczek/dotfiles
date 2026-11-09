@@ -15,6 +15,8 @@ SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SYMLINKS=(
     "ideavim/.ideavimrc:$HOME/.ideavimrc"
     "zsh/.zshrc:$HOME/.zshrc"
+    "zed/settings.json:$HOME/.config/zed/settings.json"
+    "zed/keymap.json:$HOME/.config/zed/keymap.json"
 )
 
 # Determine OS-specific config paths and add them to symlinks
